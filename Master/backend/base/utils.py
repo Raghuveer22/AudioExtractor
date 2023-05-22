@@ -19,7 +19,7 @@ class Video:
             print("Directory created successfully" )
         except OSError as error:
             print("Directory can not be created")
-        self._file = _file
+        self._file = _file['file']
         self.name="_".join(self._file.name.split())
         self.name=os.path.splitext(str(self._file))[0]
         input_file_extension = os.path.splitext(str(self._file))[1]
@@ -55,6 +55,7 @@ class Youtube:
         self.url = url
         self.youtube_obj=YouTube(url)
         self.audio = YouTube(url).streams.filter(only_audio=True).first()
+        print(self.audio)
         self.name = self.audio.default_filename
         self.name= "_".join(self.name.split())
         self.name=os.path.splitext(str(self.name))[0]

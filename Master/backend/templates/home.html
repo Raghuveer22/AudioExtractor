@@ -1,11 +1,31 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %} 
+{% block content%}
 <h2>Welcome to the Home Page</h2>
 {% if not user.is_authenticated %}
-    <p>Please sign in to access the content.</p>
-    <a href="{% url 'login' %}">Sign in</a>
-{% else %}
-    <!-- Add your content for authenticated users here -->
-{% endif %}
-
+<p>Please sign in to access the content.</p>
+<a href="{% url 'login' %}">Sign in</a>
+<p>New User</p>
+<a href="{% url 'signup' %}">Sign Up</a>
+{% endif %} 
+<!-- Add your content for authenticated users here -->
 {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'logout' %}">Logout</a>
+{% comment %} form for uploading {% endcomment %}
+<form method="POST" action="{% url 'home' %}"novalidate  enctype="multipart/form-data">
+  {% csrf_token %}
+  <div id="url-container">
+    {{ form.url.label_tag }} {{ form.url}}
+  </div>
+  <div id="file-container" style="display: none;">
+    {{ form.file.label_tag }} {{ form.file }}
+  </div>
+  <button type="button" onclick="toggleFields()">Switch Field</button>
+  <button type="submit">Submit</button>
+</form>
+
 {% endif %}
+<!-- Add your specific content here -->
+
+{% endblock %}

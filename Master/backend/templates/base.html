@@ -1,0 +1,38 @@
+<!-- base.html -->
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Add your CSS and other common elements here -->
+</head>
+<body>
+    <header>
+        <h1>Header<h1>
+        <!-- Add your header content here -->
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <h1>footer<h1>
+        <!-- Add your footer content here -->
+    </footer>
+</body>
+<script>
+    function toggleFields() {
+        var urlContainer = document.getElementById("url-container");
+        var fileContainer = document.getElementById("file-container");
+    
+        if (urlContainer.style.display === "none") {
+        urlContainer.style.display = "block";
+        fileContainer.style.display = "none";
+        } else {
+        urlContainer.style.display = "none";
+        fileContainer.style.display = "block";
+        document.getElementById('id_url').value='';
+        }
+    }
+    </script>
+</html>
